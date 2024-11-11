@@ -1,5 +1,5 @@
 plugins {
-    java
+    application
     id("com.gradleup.shadow") version "8.3.5"
 }
 
@@ -15,4 +15,8 @@ repositories {
 
 dependencies {
     implementation("net.dzikoysk:cdn:1.14.5")
+}
+
+application {
+    mainClass = "net.uku3lig.json2cdn.Main"
 }
