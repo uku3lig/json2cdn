@@ -1,6 +1,8 @@
 plugins {
     application
     id("com.gradleup.shadow") version "8.3.5"
+
+    `maven-publish`
 }
 
 group = "net.uku3lig"
@@ -19,4 +21,24 @@ dependencies {
 
 application {
     mainClass = "net.uku3lig.json2cdn.Main"
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            artifactId = "json2cdn"
+            from(components["java"])
+        }
+    }
+
+    repositories {
+        maven {
+            name = "uku"
+            url = uri("https://maven.uku3lig.net/releases")
+            credentials {
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
+        }
+    }
 }
